@@ -1,0 +1,784 @@
+/* CSS RESET Y VARIABLES */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-red: #c51a37;
+    --dark-red: #a51620;
+    --dark-grey: #4a4a4d;
+    --light-grey: #818182;
+    --bg-light: #f8f8f9;
+    --black: #111111;
+    --white: #ffffff;
+    --font-main: 'Montserrat', Helvetica, Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--dark-grey);
+    background-color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* NAVBAR MINIMALISTA */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    padding: 0.5rem 0;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.25rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 28px;
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-btn {
+    font-family: var(--font-main);
+    font-size: 0.80rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nidu-btn {
+    color: var(--dark-grey);
+    border: 1px solid rgba(74, 74, 77, 0.3);
+    background: transparent;
+}
+
+.nidu-btn:hover {
+    border-color: var(--primary-red);
+    color: var(--primary-red);
+}
+
+.consultation-btn {
+    background-color: var(--dark-grey);
+    color: var(--white);
+    box-shadow: 0 4px 12px rgba(90, 89, 89, 0.25);
+}
+
+.consultation-btn:hover {
+    background-color: var(--light-grey);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(83, 83, 83, 0.35);
+}
+
+/* HERO SECTION - CARRUSEL DE PANTALLA COMPLETA */
+.hero-carousel {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--black);
+}
+
+.carousel-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scale(1.03);
+    display: flex;
+    align-items: flex-end;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    z-index: 2;
+}
+
+.slide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.1) 100%);
+    z-index: 1;
+}
+
+.slide-content {
+    position: relative;
+    z-index: 3;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 2.5rem 6rem 2.5rem;
+}
+
+.slide-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--white);
+    background-color: rgba(49, 48, 49, 0.75);
+    padding: 0.35rem 0.9rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
+}
+
+p {
+    color: #ededee;
+}
+
+.project-title {
+    font-size: clamp(1.4rem, 1.8vw, 2rem);
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s;
+}
+
+.project-location {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0.1rem;
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.8s ease 0.45s, transform 0.8s ease 0.45s;
+}
+
+.project-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.15rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.85);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease 0.5s, transform 0.8s ease 0.5s;
+}
+
+.meta-divider {
+    color: var(--dark-grey);
+    font-weight: 700;
+}
+
+/* Animaciones activas en slide actual */
+.carousel-slide.active .slide-tag,
+.carousel-slide.active .project-title,
+.carousel-slide.active .project-location,
+.carousel-slide.active .project-meta {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Controles del Carrusel */
+.carousel-controls {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 2.5rem;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.carousel-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--white);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.carousel-btn:hover {
+    background-color: var(--light-grey);
+    border-color: var(--dark-grey);
+}
+
+.carousel-dots {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    width: 24px;
+    border-radius: 4px;
+    background-color: var(--white);
+}
+
+/* SECTIONS COMUNES */
+.section-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 7rem 2.5rem;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: flex-start;
+}
+
+.content-grid.reverse {
+    direction: rtl;
+}
+
+.content-grid.reverse > * {
+    direction: ltr;
+}
+
+.image-wrapper {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.highlight-img {
+    width: 100%;
+    height: 650px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.image-wrapper:hover .highlight-img {
+    transform: scale(1.03);
+}
+
+.img-badge {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    background-color: var(--light-grey);
+    color: var(--white);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.img-badge.dark {
+    background-color: var(--light-grey);
+}
+
+.text-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.section-subtitle {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--primary-red);
+    margin-bottom: 0.75rem;
+}
+
+.section-title {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+}
+
+.section-text {
+    font-size: 1.05rem;
+    color: var(--dark-grey);
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+}
+
+/* ESPECIFICACIONES DE PROYECTO NIDÚ */
+.project-specs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin: 2rem 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.spec-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.spec-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--light-grey);
+    margin-bottom: 0.25rem;
+}
+
+.spec-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--black);
+}
+
+/* ESTADISTICAS ESTUDIO LUMI */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2.5rem;
+}
+
+.stat-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-red);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.stat-desc {
+    font-size: 0.85rem;
+    color: var(--light-grey);
+    font-weight: 500;
+}
+
+/* BOTÓN PRIMARIO */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: var(--black);
+    color: var(--white);
+    padding: 0.9rem 2rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    width: fit-content;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-red);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(197, 26, 55, 0.3);
+}
+
+/* FOOTER SIMPLE */
+.site-footer {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 4rem 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+}
+
+.footer-logo {
+    height: 40px;
+    width: auto;
+    opacity: 0.9;
+    /* filter: brightness(0) invert(1); */
+
+}
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.footer-copy {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 300;
+}
+
+.footer-contacts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+}
+
+.footer-contacts a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-contacts a:hover {
+    color: var(--primary-red);
+}
+
+.footer-contacts span {
+    color: var(--light-grey);
+}
+
+/* FOOTER SOCIAL ICONS */
+.footer-socials {
+    display: flex;
+    gap: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.social-icon svg {
+    stroke: #ffffff !important;
+    fill: none;
+}
+
+.social-icon:hover {
+    background-color: var(--primary-red);
+    border-color: var(--primary-red);
+    transform: translateY(-2px);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+    .content-grid, .content-grid.reverse {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        direction: ltr;
+    }
+    
+    .highlight-img {
+        height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 1rem 1.25rem;
+    }
+    
+    .logo-img {
+        height: 18px;
+    }
+    
+    .nav-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .project-specs, .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* HERO MÓVIL DEFINITIVO: IMAGEN ARRIBA Y TEXTO ABAJO SEPARADOS */
+    .hero-carousel {
+        height: auto !important;
+        min-height: 440px;
+        background-color: var(--white);
+    }
+
+    .carousel-track {
+        position: relative;
+        height: 420px; /* Altura calculada para imagen (300px) + texto (180px) */
+    }
+
+    .carousel-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        visibility: hidden;
+        display: none;
+        background-size: 100% 270px !important; /* Imagen fija en los primeros 300px */
+        background-repeat: no-repeat !important;
+        background-position: top center !important;
+        background-color: var(--white) !important;
+    }
+
+    .carousel-slide.active {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .slide-overlay {
+        display: none !important;
+    }
+
+    .slide-content {
+        position: absolute;
+        top: 270px; /* Se posiciona debajo exacto de la imagen */
+        left: 0;
+        width: 100%;
+        height: auto;
+        background-color: var(--white) !important; /* Fondo blanco limpio */
+        padding: 0.85rem 1.25rem 0.5rem 1.25rem;
+        text-align: left;
+        z-index: 5;
+    }
+
+    /* Textos oscuros perfectamente legibles sobre blanco */
+    .slide-content .project-title {
+        color: var(--black) !important;
+        font-size: 1.5rem !important;
+        margin-bottom: 0.4rem !important;
+    }
+
+    .slide-content .project-location {
+        color: var(--dark-grey) !important;
+        font-size: 0.95rem !important;
+        margin-bottom: 0.4rem !important;
+    }
+
+    .slide-content .project-meta {
+        color: var(--dark-grey) !important;
+        font-size: 0.9rem !important;
+    }
+
+    .slide-content .slide-tag {
+        background-color: rgba(88, 87, 87, 0.9) !important;
+        margin-bottom: 0.4rem !important;
+    }
+
+.carousel-controls {
+        position: absolute !important;
+        top: 400px !important;
+        left: 0 !important;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin-top: 0 !important;
+        padding-bottom: 1rem !important;
+        z-index: 10;
+    }
+
+    .carousel-controls .carousel-btn {
+        background: rgba(0, 0, 0, 0.1) !important;
+        border: 1px solid rgba(0, 0, 0, 0.2) !important;
+        color: var(--black) !important;
+        width: 36px;
+        height: 36px;
+    }
+
+    .carousel-controls .dot {
+        background-color: rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .carousel-controls .dot.active {
+        background-color: var(--dark-grey) !important;
+    }
+}
+
+/* =========================================================
+   HERO CON VIDEO (nidu.html)
+   Escritorio: video a pantalla completa (cover) con overlay.
+   Tablet/Móvil: video completo sin recortes (proporción real).
+   ========================================================= */
+.hero-video {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+    background-color: var(--black);
+    display: flex;
+    align-items: flex-end;
+}
+
+.hero-video .hero-video-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hero-video .slide-tag,
+.hero-video .project-meta {
+    opacity: 1;
+    transform: translateY(0);
+    animation: heroFadeUp 0.9s ease both;
+}
+
+.hero-video .slide-tag { animation-delay: 0.3s; }
+.hero-video .project-meta { animation-delay: 0.5s; }
+
+@keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* TABLET: video completo debajo del navbar, texto sobre el video */
+@media (max-width: 1024px) {
+    .hero-video {
+        height: auto;
+        display: block;
+        padding-top: var(--nav-h, 74px); /* alto real del navbar fijo (lo mide script.js) */
+    }
+
+    .hero-video .hero-video-media {
+        position: relative;
+        inset: auto;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .hero-video .slide-overlay {
+        top: var(--nav-h, 74px);
+        height: calc(100% - var(--nav-h, 74px));
+    }
+
+    .hero-video .slide-content {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        padding: 0 2rem 2rem 2rem;
+    }
+}
+
+/* MÓVIL: video arriba completo y texto abajo sobre blanco (mismo concepto que el carrusel) */
+@media (max-width: 768px) {
+    .hero-video {
+        background-color: var(--white);
+    }
+
+    .hero-video .slide-overlay {
+        display: none !important;
+    }
+
+    .hero-video .slide-content {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        padding: 0.85rem 1.25rem 1.25rem 1.25rem;
+    }
+
+    .hero-video .slide-content .project-meta {
+        color: var(--dark-grey) !important;
+        font-size: 0.9rem !important;
+    }
+
+    .hero-video .slide-content .slide-tag {
+        background-color: rgba(88, 87, 87, 0.9) !important;
+        margin-bottom: 0.4rem !important;
+    }
+}
